@@ -5,4 +5,4 @@ docx
 PIL
 io
 pandas
-pip install --upgrade pip
+--upgrade pip
