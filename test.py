@@ -301,8 +301,8 @@ def init_time(check : bool)-> bool:
     target_time = datetime.now(local_tz).replace(hour=12, minute=50, second=0, microsecond=0)
     
     # Nếu thời gian hiện tại đã qua 14h30, thì đặt mục tiêu là 14h30 ngày mai
-    if datetime.now(local_tz) > target_time:
-        target_time += timedelta(days=1)
+    # if datetime.now(local_tz) > target_time:
+    #     target_time += timedelta(days=1)
     
     # Tạo vùng hiển thị thời gian
     countdown_display = st.empty()
