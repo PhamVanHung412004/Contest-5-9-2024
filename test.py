@@ -1,4 +1,8 @@
 import streamlit as st
+from docx import Document
+from PIL import Image
+import io
+import pandas as pd
 import time
 
 # Initialize session state to keep track of remaining time
