@@ -298,7 +298,7 @@ def init_time(check : bool)-> bool:
     local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
     
     # Đặt mốc thời gian 14h30 hôm nay theo múi giờ Việt Nam
-    target_time = datetime.now(local_tz).replace(hour=12, minute=47, second=0, microsecond=0)
+    target_time = datetime.now(local_tz).replace(hour=12, minute=50, second=0, microsecond=0)
     
     # Nếu thời gian hiện tại đã qua 14h30, thì đặt mục tiêu là 14h30 ngày mai
     if datetime.now(local_tz) > target_time:
