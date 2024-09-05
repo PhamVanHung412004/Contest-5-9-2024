@@ -5,6 +5,7 @@ import io
 import pandas as pd
 import time
 from datetime import datetime, timedelta
+import pytz
 
 def remove_duplicates(input_list : list) -> list:
     seen = set()
@@ -112,6 +113,7 @@ if 'remaining_time' not in st.session_state:
 # Function to display countdown timer
 check = False
 def init_time()-> None:
+    local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
     target_time = datetime.now().replace(hour=14, minute=30, second=0, microsecond=0)
     
     if datetime.now() > target_time:
@@ -122,7 +124,7 @@ def init_time()-> None:
     
     while True:
         # Lấy thời gian hiện tại
-        current_time = datetime.now()
+        current_time = datetime.now(local_tz)
         # Tính toán thời gian còn lại
         time_left = target_time - current_time
         
