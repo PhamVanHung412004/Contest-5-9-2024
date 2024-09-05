@@ -298,7 +298,7 @@ def init_time(check : bool)-> bool:
     local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
     
     # Đặt mốc thời gian 14h30 hôm nay theo múi giờ Việt Nam
-    target_time = datetime.now(local_tz).replace(hour=12, minute=52, second=0, microsecond=0)
+    target_time = datetime.now(local_tz).replace(hour=12, minute=55, second=0, microsecond=0)
     
     # Nếu thời gian hiện tại đã qua 14h30, thì đặt mục tiêu là 14h30 ngày mai
     # if datetime.now(local_tz) > target_time:
@@ -322,12 +322,13 @@ def init_time(check : bool)-> bool:
         minutes, seconds = divmod(remainder, 60)
         
         # Hiển thị thời gian đếm ngược
-        countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
+        
         
         # Kiểm tra nếu đã tới 14h30, dừng vòng lặp
         if total_seconds_left <= 0:
             return True
             break
+        countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
         
         # Dừng 1 giây trước khi cập nhật lại
         time.sleep(1)
