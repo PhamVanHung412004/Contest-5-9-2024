@@ -123,7 +123,6 @@ def init_time()-> None:
     while True:
         # Lấy thời gian hiện tại
         current_time = datetime.now()
-        
         # Tính toán thời gian còn lại
         time_left = target_time - current_time
         
