@@ -30,7 +30,6 @@ def tranform(arr : list):
     a[0].append(tmp1)
     a[1].append(tmp2)
     a = dict(a)
-    print(a)
 
 def process_table_data(table_string):
     rows = table_string.strip().split('\n')
