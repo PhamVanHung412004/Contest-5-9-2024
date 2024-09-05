@@ -124,8 +124,6 @@ def init_time()-> None:
     if datetime.now(local_tz) > target_time:
         target_time += timedelta(days=1)
     
-    st.title("Đếm ngược đến 14h30 chiều")
-    
     # Tạo vùng hiển thị thời gian
     countdown_display = st.empty()
     
@@ -144,11 +142,10 @@ def init_time()-> None:
         minutes, seconds = divmod(remainder, 60)
         
         # Hiển thị thời gian đếm ngược
-        countdown_display.text(f"Thời gian còn lại đến 14h30: {hours} giờ {minutes} phút {seconds} giây")
+        countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
         
         # Kiểm tra nếu đã tới 14h30, dừng vòng lặp
         if total_seconds_left <= 0:
-            countdown_display.text("Đã đến 14h30!")
             check = True
             break
         
