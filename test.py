@@ -110,47 +110,47 @@ if 'remaining_time' not in st.session_state:
     st.session_state.remaining_time = 3 * 3600 + 30 * 60
 
 # Function to display countdown timer
-check = False
-def init_time()-> None:
+# check = False
+# def init_time()-> None:
     
-   # Đặt múi giờ Việt Nam (Asia/Ho_Chi_Minh)
-    local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+#    # Đặt múi giờ Việt Nam (Asia/Ho_Chi_Minh)
+#     local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
     
-    # Đặt mốc thời gian 14h30 hôm nay theo múi giờ Việt Nam
-    target_time = datetime.now(local_tz).replace(hour=12, minute=42, second=0, microsecond=0)
+#     # Đặt mốc thời gian 14h30 hôm nay theo múi giờ Việt Nam
+#     target_time = datetime.now(local_tz).replace(hour=12, minute=42, second=0, microsecond=0)
     
-    # Nếu thời gian hiện tại đã qua 14h30, thì đặt mục tiêu là 14h30 ngày mai
-    if datetime.now(local_tz) > target_time:
-        target_time += timedelta(days=1)
+#     # Nếu thời gian hiện tại đã qua 14h30, thì đặt mục tiêu là 14h30 ngày mai
+#     if datetime.now(local_tz) > target_time:
+#         target_time += timedelta(days=1)
     
-    # Tạo vùng hiển thị thời gian
-    countdown_display = st.empty()
+#     # Tạo vùng hiển thị thời gian
+#     countdown_display = st.empty()
     
-    while True:
-        # Lấy thời gian hiện tại theo múi giờ Việt Nam
-        current_time = datetime.now(local_tz)
+#     while True:
+#         # Lấy thời gian hiện tại theo múi giờ Việt Nam
+#         current_time = datetime.now(local_tz)
         
-        # Tính toán thời gian còn lại
-        time_left = target_time - current_time
+#         # Tính toán thời gian còn lại
+#         time_left = target_time - current_time
         
-        # Làm tròn số giây
-        total_seconds_left = round(time_left.total_seconds())
+#         # Làm tròn số giây
+#         total_seconds_left = round(time_left.total_seconds())
         
-        # Chuyển đổi số giây còn lại thành giờ, phút, giây
-        hours, remainder = divmod(total_seconds_left, 3600)
-        minutes, seconds = divmod(remainder, 60)
+#         # Chuyển đổi số giây còn lại thành giờ, phút, giây
+#         hours, remainder = divmod(total_seconds_left, 3600)
+#         minutes, seconds = divmod(remainder, 60)
         
-        # Hiển thị thời gian đếm ngược
-        countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
+#         # Hiển thị thời gian đếm ngược
+#         countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
         
-        # Kiểm tra nếu đã tới 14h30, dừng vòng lặp
-        if total_seconds_left <= 0:
-            check = True
-            break
+#         # Kiểm tra nếu đã tới 14h30, dừng vòng lặp
+#         if total_seconds_left <= 0:
+#             check = True
+#             break
         
-        # Dừng 1 giây trước khi cập nhật lại
-        time.sleep(1)
-init_time()
+#         # Dừng 1 giây trước khi cập nhật lại
+#         time.sleep(1)
+# init_time()
 
 def countdown() -> None:
     while st.session_state.remaining_time:
@@ -170,9 +170,9 @@ def countdown() -> None:
 # st.title("Tham gia thi")
 
 # Button to start countdown
-if (check):
-    if st.button("Bắt đầu thi"):
-        time_placeholder = st.empty()  # Placeholder for the timer
-        run()
-        # import a
-        countdown()
+
+if st.button("Bắt đầu thi"):
+    time_placeholder = st.empty()  # Placeholder for the timer
+    run()
+    # import a
+    countdown()
