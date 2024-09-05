@@ -114,32 +114,41 @@ if 'remaining_time' not in st.session_state:
 check = False
 def init_time()-> None:
     
-    target_time = datetime.now().replace(hour=14, minute=30, second=0, microsecond=0)
+   # Đặt múi giờ Việt Nam (Asia/Ho_Chi_Minh)
+    local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
     
-    if datetime.now() > target_time:
+    # Đặt mốc thời gian 14h30 hôm nay theo múi giờ Việt Nam
+    target_time = datetime.now(local_tz).replace(hour=14, minute=30, second=0, microsecond=0)
+    
+    # Nếu thời gian hiện tại đã qua 14h30, thì đặt mục tiêu là 14h30 ngày mai
+    if datetime.now(local_tz) > target_time:
         target_time += timedelta(days=1)
+    
+    st.title("Đếm ngược đến 14h30 chiều")
     
     # Tạo vùng hiển thị thời gian
     countdown_display = st.empty()
     
     while True:
-        # Lấy thời gian hiện tại
+        # Lấy thời gian hiện tại theo múi giờ Việt Nam
         current_time = datetime.now(local_tz)
+        
         # Tính toán thời gian còn lại
         time_left = target_time - current_time
         
         # Làm tròn số giây
         total_seconds_left = round(time_left.total_seconds())
         
-        # Chuyển đổi số giây còn lại thành dạng giờ, phút, giây
+        # Chuyển đổi số giây còn lại thành giờ, phút, giây
         hours, remainder = divmod(total_seconds_left, 3600)
         minutes, seconds = divmod(remainder, 60)
         
         # Hiển thị thời gian đếm ngược
-        countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
+        countdown_display.text(f"Thời gian còn lại đến 14h30: {hours} giờ {minutes} phút {seconds} giây")
         
         # Kiểm tra nếu đã tới 14h30, dừng vòng lặp
         if total_seconds_left <= 0:
+            countdown_display.text("Đã đến 14h30!")
             check = True
             break
         
