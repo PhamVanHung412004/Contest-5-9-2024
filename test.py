@@ -4,6 +4,7 @@ from PIL import Image
 import io
 import pandas as pd
 import time
+from datetime import datetime, timedelta
 
 def remove_duplicates(input_list : list) -> list:
     seen = set()
@@ -109,6 +110,42 @@ if 'remaining_time' not in st.session_state:
     st.session_state.remaining_time = 3 * 3600 + 30 * 60
 
 # Function to display countdown timer
+check = False
+def init_time()-> None:
+    target_time = datetime.now().replace(hour=14, minute=30, second=0, microsecond=0)
+    
+    if datetime.now() > target_time:
+        target_time += timedelta(days=1)
+    
+    # Tạo vùng hiển thị thời gian
+    countdown_display = st.empty()
+    
+    while True:
+        # Lấy thời gian hiện tại
+        current_time = datetime.now()
+        
+        # Tính toán thời gian còn lại
+        time_left = target_time - current_time
+        
+        # Làm tròn số giây
+        total_seconds_left = round(time_left.total_seconds())
+        
+        # Chuyển đổi số giây còn lại thành dạng giờ, phút, giây
+        hours, remainder = divmod(total_seconds_left, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        
+        # Hiển thị thời gian đếm ngược
+        countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
+        
+        # Kiểm tra nếu đã tới 14h30, dừng vòng lặp
+        if total_seconds_left <= 0:
+            check = True
+            break
+        
+        # Dừng 1 giây trước khi cập nhật lại
+        time.sleep(1)
+init_time()
+
 def countdown() -> None:
     while st.session_state.remaining_time:
         hours, remainder = divmod(st.session_state.remaining_time, 3600)
@@ -127,8 +164,9 @@ def countdown() -> None:
 # st.title("Tham gia thi")
 
 # Button to start countdown
-if st.button("Bắt đầu thi"):
-    time_placeholder = st.empty()  # Placeholder for the timer
-    run()
-    # import a
-    countdown()
+if (check):
+    if st.button("Bắt đầu thi"):
+        time_placeholder = st.empty()  # Placeholder for the timer
+        run()
+        # import a
+        countdown()
