@@ -325,7 +325,7 @@ def init_time(check : bool)-> bool:
         countdown_display.text(f"Thời gian còn lại: {hours} giờ {minutes} phút {seconds} giây")
         
         # Kiểm tra nếu đã tới 14h30, dừng vòng lặp
-        if total_seconds_left == 0:
+        if total_seconds_left <= 0:
             return True
             break
         
