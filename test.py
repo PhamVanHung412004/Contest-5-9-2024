@@ -6,7 +6,6 @@ import pandas as pd
 import time
 from datetime import datetime, timedelta
 import pytz
-local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
 def remove_duplicates(input_list : list) -> list:
     seen = set()
     result = []
